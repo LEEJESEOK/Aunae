@@ -1,0 +1,49 @@
+{
+   materials: [
+      {
+         name: "lambert2SG",
+         parameters: [
+            {
+               baseColor: "Wood_Plane_v01_DefaultMaterial_Diffuse",
+            },
+            {
+               baseColorTint: [
+                  1,
+                  1,
+                  1,
+                  1,
+               ],
+            },
+            {
+               metallic: 0,
+            },
+            {
+               roughness: 1,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+   ],
+   model: {
+      attributes: [
+         "Position",
+         "TexCoord",
+         "Orientation",
+      ],
+      collision: {},
+      file: "sampledata/Wood_Plane/wood_plane_v01.obj",
+      name: "wood_plane_v01",
+      scale: 0.25,
+   },
+   samplers: [
+      {
+         file: "sampledata/Wood_Plane\\Wood_Plane_v01_DefaultMaterial_Diffuse.png",
+         name: "Wood_Plane_v01_DefaultMaterial_Diffuse",
+         pipeline_name: "Wood_Plane_v01_DefaultMaterial_Diffuse.png",
+      },
+   ],
+   version: "0.51:1",
+}

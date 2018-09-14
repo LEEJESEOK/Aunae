@@ -1,0 +1,49 @@
+{
+   materials: [
+      {
+         name: "lambert2SG",
+         parameters: [
+            {
+               baseColor: "wood_box_id_DefaultMaterial_Diffuse",
+            },
+            {
+               baseColorTint: [
+                  1,
+                  1,
+                  1,
+                  1,
+               ],
+            },
+            {
+               metallic: 0,
+            },
+            {
+               roughness: 1,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+   ],
+   model: {
+      attributes: [
+         "Position",
+         "TexCoord",
+         "Orientation",
+      ],
+      collision: {},
+      file: "sampledata/Wood_Box_v01/wood_box_v01.obj",
+      name: "wood_box_v01",
+      scale: 0.0039179,
+   },
+   samplers: [
+      {
+         file: "sampledata/Wood_Box_v01\\wood_box_id_DefaultMaterial_Diffuse.png",
+         name: "wood_box_id_DefaultMaterial_Diffuse",
+         pipeline_name: "wood_box_id_DefaultMaterial_Diffuse.png",
+      },
+   ],
+   version: "0.51:1",
+}

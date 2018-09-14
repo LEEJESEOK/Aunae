@@ -1,0 +1,8 @@
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd wood_box_id_DefaultMaterial_Diffuse.png
+bump wood_box_id_DefaultMaterial_Normal.png -bm 0.2
+Ni 1.00

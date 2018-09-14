@@ -1,0 +1,562 @@
+{
+   materials: [
+      {
+         name: "wall_brick01",
+         parameters: [
+            {
+               baseColor: "brick_mabng_01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "bott_brick02",
+         parameters: [
+            {
+               baseColor: "brick_mabng_02-1",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "wall_wht01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.80000000000000004,
+                  0.80000000000000004,
+                  0.80000000000000004,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "wall_grey01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.047058999999999997,
+                  0.047058999999999997,
+                  0.047058999999999997,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.17960499999999999,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "con01",
+         parameters: [
+            {
+               baseColor: "sieman3",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "bott_brick01",
+         parameters: [
+            {
+               baseColor: "brick_mabng_03-1",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "roof_wd02",
+         parameters: [
+            {
+               baseColor: "wood_mabng_02",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "roof_wd01",
+         parameters: [
+            {
+               baseColor: "wood_mabng_01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "kiwa_01",
+         parameters: [
+            {
+               baseColor: "kiwa_a02",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "kiwa_02",
+         parameters: [
+            {
+               baseColor: "kiwa_b01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "glass_01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.59215700000000004,
+                  0.80392200000000003,
+                  1,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.15617400000000001,
+            },
+            {
+               opacity: 0.12,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "win_brz01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.062744999999999995,
+                  0.035293999999999999,
+                  0.027451,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.17960499999999999,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "win_wht01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.89411799999999997,
+                  0.89411799999999997,
+                  0.89411799999999997,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.17960499999999999,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "door_blk01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.023529000000000001,
+                  0.023529000000000001,
+                  0.023529000000000001,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.17960499999999999,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "door_sus01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.40784300000000001,
+                  0.40784300000000001,
+                  0.40784300000000001,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.15617400000000001,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "con_01",
+         parameters: [
+            {
+               baseColor: "con_mabng_02",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "wood01",
+         parameters: [
+            {
+               baseColor: "wood_mabng_03",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "text01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.40000000000000002,
+                  0.270588,
+                  0.105882,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.15617400000000001,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "shape01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.062744999999999995,
+                  0.062744999999999995,
+                  0.062744999999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+   ],
+   model: {
+      attributes: [
+         "Position",
+         "TexCoord",
+         "Orientation",
+      ],
+      collision: {},
+      file: "sampledata/maebong/1-obj/mabong_01.obj",
+      name: "mabong_01",
+      scale: 0.00025,
+   },
+   samplers: [
+      {
+         file: "sampledata/maebong/1-obj\\brick_mabng_03-1.jpg",
+         name: "brick_mabng_03-1",
+         pipeline_name: "brick_mabng_03-1.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\brick_mabng_01.jpg",
+         name: "brick_mabng_01",
+         pipeline_name: "brick_mabng_01.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\kiwa_b01.jpg",
+         name: "kiwa_b01",
+         pipeline_name: "kiwa_b01.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\kiwa_a02.jpg",
+         name: "kiwa_a02",
+         pipeline_name: "kiwa_a02.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\brick_mabng_02-1.jpg",
+         name: "brick_mabng_02-1",
+         pipeline_name: "brick_mabng_02-1.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\sieman3.jpg",
+         name: "sieman3",
+         pipeline_name: "sieman3.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\wood_mabng_02.jpg",
+         name: "wood_mabng_02",
+         pipeline_name: "wood_mabng_02.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\con_mabng_02.jpg",
+         name: "con_mabng_02",
+         pipeline_name: "con_mabng_02.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\wood_mabng_01.jpg",
+         name: "wood_mabng_01",
+         pipeline_name: "wood_mabng_01.jpg",
+      },
+      {
+         file: "sampledata/maebong/1-obj\\wood_mabng_03.jpg",
+         name: "wood_mabng_03",
+         pipeline_name: "wood_mabng_03.jpg",
+      },
+   ],
+   version: "0.51:1",
+}

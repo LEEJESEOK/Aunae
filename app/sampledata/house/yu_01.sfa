@@ -1,0 +1,354 @@
+{
+   materials: [
+      {
+         name: "wood01",
+         parameters: [
+            {
+               baseColor: "wood_mabng_02-1",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "con_01",
+         parameters: [
+            {
+               baseColor: "con_mabng_01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "wall_hwt_01",
+         parameters: [
+            {
+               baseColor: "hwangto_01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "wood02",
+         parameters: [
+            {
+               baseColor: "wood_mabng_01-2",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "floor_room01",
+         parameters: [
+            {
+               baseColor: "room_fl01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "wallpaper01",
+         parameters: [
+            {
+               baseColor: "hanji_02-1",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "con_02",
+         parameters: [
+            {
+               baseColor: "con_01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "metal_blk01",
+         parameters: [
+            {
+               baseColor: null,
+            },
+            {
+               baseColorTint: [
+                  0.031372999999999998,
+                  0.031372999999999998,
+                  0.031372999999999998,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.218218,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "dr_paper01",
+         parameters: [
+            {
+               baseColor: "hanji_01",
+            },
+            {
+               baseColorTint: [
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  0.58823499999999995,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: 0.90000000000000002,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "thatch_01",
+         parameters: [
+            {
+               baseColor: "thatched_a01",
+            },
+            {
+               baseColorTint: [
+                  0.58799999999999997,
+                  0.58799999999999997,
+                  0.58799999999999997,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "thatch_02",
+         parameters: [
+            {
+               baseColor: "thatched_b01",
+            },
+            {
+               baseColorTint: [
+                  0.58799999999999997,
+                  0.58799999999999997,
+                  0.58799999999999997,
+                  1,
+               ],
+            },
+            {
+               metallic: 1,
+            },
+            {
+               roughness: 0.408248,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+   ],
+   model: {
+      attributes: [
+         "Position",
+         "TexCoord",
+         "Orientation",
+      ],
+      collision: {},
+      file: "sampledata/house/yu_01.obj",
+      name: "yu_01",
+      scale: 0.000504,
+   },
+   samplers: [
+      {
+         file: "sampledata/house\\hanji_01.jpg",
+         name: "hanji_01",
+         pipeline_name: "hanji_01.jpg",
+      },
+      {
+         file: "sampledata/house\\wood_mabng_01-2.jpg",
+         name: "wood_mabng_01-2",
+         pipeline_name: "wood_mabng_01-2.jpg",
+      },
+      {
+         file: "sampledata/house\\hwangto_01.jpg",
+         name: "hwangto_01",
+         pipeline_name: "hwangto_01.jpg",
+      },
+      {
+         file: "sampledata/house\\wood_mabng_02-1.jpg",
+         name: "wood_mabng_02-1",
+         pipeline_name: "wood_mabng_02-1.jpg",
+      },
+      {
+         file: "sampledata/house\\con_01.jpg",
+         name: "con_01",
+         pipeline_name: "con_01.jpg",
+      },
+      {
+         file: "sampledata/house\\con_mabng_01.jpg",
+         name: "con_mabng_01",
+         pipeline_name: "con_mabng_01.jpg",
+      },
+      {
+         file: "sampledata/house\\room_fl01.jpg",
+         name: "room_fl01",
+         pipeline_name: "room_fl01.jpg",
+      },
+      {
+         file: "sampledata/house\\hanji_02-1.jpg",
+         name: "hanji_02-1",
+         pipeline_name: "hanji_02-1.jpg",
+      },
+      {
+         file: "sampledata/house\\thatched_a01.jpg",
+         name: "thatched_a01",
+         pipeline_name: "thatched_a01.jpg",
+      },
+      {
+         file: "sampledata/house\\thatched_b01.jpg",
+         name: "thatched_b01",
+         pipeline_name: "thatched_b01.jpg",
+      },
+   ],
+   version: "0.51:1",
+}

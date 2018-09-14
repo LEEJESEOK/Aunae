@@ -1,0 +1,111 @@
+{
+   materials: [
+      {
+         name: "Sctr_rock_sandstone_T_qbfvU_1_LOD5SG",
+         parameters: [
+            {
+               baseColor: "Sctr_rock_sandstone_T_qbfvU_2K_Albedo",
+            },
+            {
+               baseColorTint: [
+                  1,
+                  1,
+                  1,
+                  1,
+               ],
+            },
+            {
+               metallic: 0,
+            },
+            {
+               roughness: 1,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "lambert2SG",
+         parameters: [
+            {
+               baseColor: "All_udim_1001_Diffuse",
+            },
+            {
+               baseColorTint: [
+                  1,
+                  1,
+                  1,
+                  1,
+               ],
+            },
+            {
+               metallic: 0,
+            },
+            {
+               roughness: 1,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+      {
+         name: "lambert3SG",
+         parameters: [
+            {
+               baseColor: "All_udim_1002_Diffuse",
+            },
+            {
+               baseColorTint: [
+                  1,
+                  1,
+                  1,
+                  1,
+               ],
+            },
+            {
+               metallic: 0,
+            },
+            {
+               roughness: 1,
+            },
+            {
+               opacity: null,
+            },
+         ],
+         source: "build/sceneform_sdk/default_materials/obj_material.sfm",
+      },
+   ],
+   model: {
+      attributes: [
+         "Position",
+         "TexCoord",
+         "Orientation",
+      ],
+      collision: {},
+      file: "sampledata/ep_stone_v01/ep_stone_v01.obj",
+      name: "ep_stone_v01",
+      scale: 0.00124,
+   },
+   samplers: [
+      {
+         file: "sampledata/ep_stone_v01\\Sctr_rock_sandstone_T_qbfvU_2K_Albedo.jpg",
+         name: "Sctr_rock_sandstone_T_qbfvU_2K_Albedo",
+         pipeline_name: "Sctr_rock_sandstone_T_qbfvU_2K_Albedo.jpg",
+      },
+      {
+         file: "sampledata/ep_stone_v01\\All_udim_1001_Diffuse.png",
+         name: "All_udim_1001_Diffuse",
+         pipeline_name: "All_udim_1001_Diffuse.png",
+      },
+      {
+         file: "sampledata/ep_stone_v01\\All_udim_1002_Diffuse.png",
+         name: "All_udim_1002_Diffuse",
+         pipeline_name: "All_udim_1002_Diffuse.png",
+      },
+   ],
+   version: "0.51:1",
+}

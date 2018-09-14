@@ -1,0 +1,25 @@
+newmtl Sctr_rock_sandstone_T_qbfvU_1_LOD5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.20 0.20 0.20
+Tf 1.00 1.00 1.00
+map_Kd Sctr_rock_sandstone_T_qbfvU_2K_Albedo.jpg
+Ni 1.00
+Ks 0.20 0.20 0.20
+Ns 18.00
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd All_udim_1001_Diffuse.png
+bump All_udim_1001_Normal.png -bm 0.2
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd All_udim_1002_Diffuse.png
+bump All_udim_1002_Normal.png -bm 0.01
+Ni 1.00
