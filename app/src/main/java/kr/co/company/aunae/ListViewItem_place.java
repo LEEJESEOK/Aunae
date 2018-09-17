@@ -3,27 +3,37 @@ package kr.co.company.aunae;
 import android.graphics.Bitmap;
 
 public class ListViewItem_place {
-    String mTitle;
-    Bitmap mBackground;
+    private String mTitle;
+    private Bitmap mBackground;
+    private int mID;
 
-    public ListViewItem_place(String title, Bitmap background) {
+    public ListViewItem_place(String title, Bitmap background, int ID) {
         mTitle = title;
         mBackground = background;
+        mID = ID;
     }
 
-    public String getTitle() {
+    public String getmTitle() {
         return mTitle;
     }
 
-    public void setTitle(String title) {
-        this.mTitle = title;
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
     }
 
-    public Bitmap getBackground() {
+    public Bitmap getmBackground() {
         return mBackground;
     }
 
-    public void setBackground(Bitmap background) {
-        this.mBackground = background;
+    public void setmBackground(Bitmap mBackground) {
+        this.mBackground = mBackground;
+    }
+
+    public int getmID() {
+        return mID;
+    }
+
+    public void setmID(int mID) {
+        this.mID = mID;
     }
 }

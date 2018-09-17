@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ListViewAdapter_place extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
@@ -43,7 +44,7 @@ public class ListViewAdapter_place extends BaseAdapter {
     // position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
+//        final int pos = position;
         final Context context = parent.getContext();
 
         // "listview_item_ihome" layout을 inflate하여 converView 참조 획득
@@ -51,44 +52,45 @@ public class ListViewAdapter_place extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_place, parent, false);
             ViewHolder holder = new ViewHolder();
-            holder.txtName = (TextView)convertView.findViewById(R.id.list_text);
-            holder.imgBack = (ImageView)convertView.findViewById(R.id.list_background);
+            holder.txtName = convertView.findViewById(R.id.list_text);
+            holder.imgBack = convertView.findViewById(R.id.list_background);
             convertView.setTag(holder);
         }
-        /******
-        // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        TextView titleview = (TextView) convertView.findViewById(R.id.list_text);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.list_background);
-        ******/
 
         // Data Set(ListViewItem_ihomes)에서 position에 위치한 데이터 참조 획득
         ListViewItem_place listViewItem = listViewItemList.get(position);
-        if(listViewItem != null) {
-            ViewHolder holder = (ViewHolder)convertView.getTag();
-            holder.txtName.setText(listViewItem.getTitle());
-            holder.imgBack.setImageBitmap(listViewItem.getBackground());
+        if (listViewItem != null) {
+            ViewHolder holder = (ViewHolder) convertView.getTag();
+            holder.txtName.setText(listViewItem.getmTitle());
+            holder.imgBack.setImageBitmap(listViewItem.getmBackground());
         }
 
-        /******
-        // 아이템 내 각 위젯에 데이터 반영
-        titleview.setText(listViewItem.getTitle());
-        imageView.setImageBitmap(listViewItem.getBackground());
-        ******/
         return convertView;
     }
 
     // 아이템 데이터 추가를 위한 함수
-    public void addItem(String ti, Bitmap bit) {
-        ListViewItem_place item = new ListViewItem_place(ti, bit);
+    // id를 확인하여 추가할때 정렬
+    public void addItem(String title, Bitmap bitmap, int id) {
+        ListViewItem_place item = new ListViewItem_place(title, bitmap, id);
 
-        item.setTitle(ti);
-        item.setBackground(bit);
+        item.setmTitle(title);
+        item.setmBackground(bitmap);
+        item.setmID(id);
 
         listViewItemList.add(item);
+        listViewItemList.sort(new Asceding());
     }
 
     static class ViewHolder {
         TextView txtName;
         ImageView imgBack;
+    }
+
+    //오름차순
+    class Asceding implements Comparator<ListViewItem_place> {
+        @Override
+        public int compare(ListViewItem_place o1, ListViewItem_place o2) {
+            return Integer.compare(o1.getmID(), o2.getmID());
+        }
     }
 }
