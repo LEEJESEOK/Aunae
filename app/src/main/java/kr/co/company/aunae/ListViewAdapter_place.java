@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ListViewAdapter_place extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
@@ -68,6 +69,7 @@ public class ListViewAdapter_place extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수
+    // id를 확인하여 추가할때 정렬
     public void addItem(String title, Bitmap bitmap, int id) {
         ListViewItem_place item = new ListViewItem_place(title, bitmap, id);
 
@@ -76,10 +78,19 @@ public class ListViewAdapter_place extends BaseAdapter {
         item.setmID(id);
 
         listViewItemList.add(item);
+        listViewItemList.sort(new Asceding());
     }
 
     static class ViewHolder {
         TextView txtName;
         ImageView imgBack;
+    }
+
+    //오름차순
+    class Asceding implements Comparator<ListViewItem_place> {
+        @Override
+        public int compare(ListViewItem_place o1, ListViewItem_place o2) {
+            return Integer.compare(o1.getmID(), o2.getmID());
+        }
     }
 }
