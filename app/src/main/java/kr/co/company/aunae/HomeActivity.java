@@ -11,16 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
+import com.android.volley.*;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,54 +24,48 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
 
-    ListView placeListView;
-    ArrayList<String> placeImageURLList;
-    ListViewAdapter_place placeListAdapter;
+    private ListView placeListView;
+    private ArrayList<String> placeImageURLList;
+    private ListViewAdapter_place placeListAdapter;
 
     private void setPlaceList() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_PLACE_LIST, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject message = new JSONObject(response);
-                    if (!message.getBoolean("error")) {
-                        JSONArray posts = message.getJSONArray("posts");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_PLACE_LIST, response -> {
+            try {
+                JSONObject message = new JSONObject(response);
+                if (!message.getBoolean("error")) {
+                    JSONArray posts = message.getJSONArray("posts");
 
-                        if (posts.length() > 0) {
-                            for (int countItem = 0; countItem < posts.length(); countItem++) {
-                                JSONObject object = posts.getJSONObject(countItem);
+                    if (posts.length() > 0) {
+                        for (int countItem = 0; countItem < posts.length(); countItem++) {
+                            JSONObject object = posts.getJSONObject(countItem);
 
-                                Log.d("DEBUG ", "object : " + object);
+                            Log.d("DEBUG ", "object : " + object);
 
-                                String name = object.isNull("place_name") ? "" : object.optString("place_name");
+                            String name = object.isNull("place_name") ? "" : object.optString("place_name");
 
-                                JSONArray image = object.isNull("image") ? new JSONArray() : new JSONArray(object.optString("image"));
-                                JSONObject tempObject = image.getJSONObject(0);
-                                String path = tempObject.optString("Path");
-                                // 경로가 "./"으로 시작하기 때문에 . 제
-                                path = path.substring(1, path.length());
-                                String imageURL = Constants.URL_IMAGE + path;
+                            JSONArray image = object.isNull("image") ? new JSONArray() : new JSONArray(object.optString("image"));
+                            JSONObject tempObject = image.getJSONObject(0);
+                            String path = tempObject.optString("Path");
+                            // 경로가 "./"으로 시작하기 때문에 . 제
+                            path = path.substring(1, path.length());
+                            String imageURL = Constants.URL_IMAGE + path;
 
-                                setImage(name, imageURL);
-                            }
+                            setImage(name, imageURL);
                         }
+                    }
 
-                        setListView();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    setListView();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        }, error -> {
+            if (error.networkResponse == null) {
+                if (error.getClass().equals(TimeoutError.class)) {
+                    Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -97,27 +84,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setImage(String name, String URL) {
-        ImageRequest imageRequest = new ImageRequest(URL, new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                Bitmap resized = Bitmap.createScaledBitmap(response, 200, 200, true);
+        // TODO 이미지 스케일 적용방식 수정해주어야함
+        ImageRequest imageRequest = new ImageRequest(URL, response -> {
+            Bitmap resized = Bitmap.createScaledBitmap(response, 200, 200, true);
 
-                placeListAdapter.addItem(name, resized);
-                placeListAdapter.notifyDataSetChanged();
-            } // TODO 이미지 스케일 적용방식 수정해주어야함
-        }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                        Log.d("" + HomeActivity.class.getName(), "서버 연결 실패");
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            placeListAdapter.addItem(name, resized);
+            placeListAdapter.notifyDataSetChanged();
+        }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, error -> {
+            if (error.networkResponse == null) {
+                if (error.getClass().equals(TimeoutError.class)) {
+                    Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    Log.d("" + HomeActivity.class.getName(), "서버 연결 실패");
                 }
-//                placeImageURLList.add(R.drawable.image_load_error);
+            } else {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
+//                placeImageURLList.add(R.drawable.image_load_error);
         });
 
         imageRequest.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -137,15 +119,12 @@ public class HomeActivity extends AppCompatActivity {
 
         setPlaceList();
 
-        placeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(HomeActivity.this, PlaceActivity.class);
+        placeListView.setOnItemClickListener((adapterView, view, position, id) -> {
+            Intent intent = new Intent(HomeActivity.this, PlaceActivity.class);
 
-                intent.putExtra("place_id", position + 1);
+            intent.putExtra("place_id", position + 1);
 
-                startActivity(intent);
-            }
+            startActivity(intent);
         });
     }
 
@@ -162,9 +141,9 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    /*****************************************
-     * 액션바 삭제
-     * **************************************
+    /****************************************
+     액션바 삭제
+     **************************************
      @Override public boolean onCreateOptionsMenu(Menu menu) {
      getMenuInflater().inflate(R.menu.actions, menu);
 
