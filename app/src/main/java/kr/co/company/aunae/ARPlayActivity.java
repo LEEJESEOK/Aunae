@@ -85,53 +85,20 @@ public class ARPlayActivity extends AppCompatActivity {
         scaleControllerTextView = findViewById(R.id.scaleControllerTextView);
 
         Intent homeIntent = getIntent();
-        modelName = homeIntent.getStringExtra("MODEL");
+        modelIndex = homeIntent.getIntExtra("index", -1);
+        // intent error
+        if (modelIndex == -1) {
+            Log.d("ERROR", "ERROR : modelIndex = -1");
+            finish();
+        }
 
-        switch (modelName) {
-            case "box":
-                modelAddress = R.raw.wood_box_v01;
-                break;
-            case "plane":
-                modelAddress = R.raw.wood_plane_v01;
-                break;
-            case "mabong":
-                modelAddress = R.raw.mabong_01;
-                scaleControllerTextView.setText("미니어처로 보기");
-                isBuilding = true;
-                break;
-            case "house":
-                modelAddress = R.raw.yu_01;
-                scaleControllerTextView.setText("미니어처로 보기");
-                isBuilding = true;
-                break;
-            case "stone":
-                modelAddress = R.raw.ep_stone_v01;
-                break;
-            default:
-                Toast.makeText(this, "다시 입력해주세요", Toast.LENGTH_SHORT).show();
-                finish();
-                break;
+        modelAddress = modelID.get(modelIndex);
+
+        if (modelIndex == 2 || modelIndex == 3) {
+            scaleControllerTextView.setText("미니어처로 보기");
+            isBuilding = true;
         }
         Log.d(DTAG, "model address");
-
-
-        if (false) {
-
-            modelIndex = homeIntent.getIntExtra("MODEL", -1);
-            // intent error
-            if (modelIndex == -1) {
-                Log.d("ERROR", "ERROR : modelIndex = -1");
-                finish();
-            }
-
-            modelAddress = modelID.get(modelIndex);
-
-            if (modelIndex == 2 || modelIndex == 3) {
-                scaleControllerTextView.setText("미니어처로 보기");
-                isBuilding = true;
-            }
-
-        }
 
         ModelRenderable.builder()
                 .setSource(this, modelAddress)
