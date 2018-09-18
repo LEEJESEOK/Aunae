@@ -10,18 +10,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class ARHomeActivity extends AppCompatActivity {
 
     private ConstraintLayout background;
     private ImageView itemImage;
     private ImageView leftImage, rightImage;
     private TextView nameText;
-
-    private ArrayList<String> itemList = new ArrayList<>(Arrays.asList("벽관", "목판", "매봉교회", "유관순열사 생가", "독립운동 기념비"));
-    private ArrayList<Integer> itemImageIDList = new ArrayList<>(Arrays.asList(R.drawable.arhome_box, R.drawable.arhome_plane, R.drawable.arhome_church, R.drawable.arhome_house, R.drawable.arhome_stone));
 
     private int itemLength;
     private int index = 0;
@@ -42,10 +36,10 @@ public class ARHomeActivity extends AppCompatActivity {
         nameText = findViewById(R.id.nameText);
 
 
-        itemImage.setImageResource(itemImageIDList.get(index));
-        nameText.setText(itemList.get(index));
+        itemImage.setImageResource(Constants.itemImageIDList.get(index));
+        nameText.setText(Constants.itemList.get(index));
 
-        itemLength = itemList.size();
+        itemLength = Constants.itemList.size();
 
 
         background.setOnClickListener(v -> {
@@ -60,16 +54,16 @@ public class ARHomeActivity extends AppCompatActivity {
             index = (index - 1 + itemLength) % itemLength;
             Log.d("left", "index : " + index);
 
-            itemImage.setImageResource(itemImageIDList.get(index));
-            nameText.setText(itemList.get(index));
+            itemImage.setImageResource(Constants.itemImageIDList.get(index));
+            nameText.setText(Constants.itemList.get(index));
         });
 
         rightImage.setOnClickListener(v -> {
             index = (index + 1) % itemLength;
             Log.d("right", "index : " + index);
 
-            itemImage.setImageResource(itemImageIDList.get(index));
-            nameText.setText(itemList.get(index));
+            itemImage.setImageResource(Constants.itemImageIDList.get(index));
+            nameText.setText(Constants.itemList.get(index));
         });
     }
 

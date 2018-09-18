@@ -23,9 +23,6 @@ import com.google.ar.sceneform.ux.RotationController;
 import com.google.ar.sceneform.ux.ScaleController;
 import com.google.ar.sceneform.ux.TransformableNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class ARPlayActivity extends AppCompatActivity {
 
     private static final String TAG = ARPlayActivity.class.getSimpleName();
@@ -43,7 +40,7 @@ public class ARPlayActivity extends AppCompatActivity {
     private Anchor anchor = null;
     ////////////////////////////////////////////
     private int modelIndex; // intent data
-    private ArrayList<Integer> modelID = new ArrayList<>(Arrays.asList(R.raw.wood_box_v01, R.raw.wood_plane_v01, R.raw.mabong_01, R.raw.yu_01, R.raw.ep_stone_v01));
+
     private ArFragment arFragment;
     private ModelRenderable modelRenderable;
 
@@ -93,7 +90,7 @@ public class ARPlayActivity extends AppCompatActivity {
             finish();
         }
 
-        modelAddress = modelID.get(modelIndex);
+        modelAddress = Constants.modelID.get(modelIndex);
 
         if (modelIndex == 2 || modelIndex == 3) {
             scaleControllerTextView.setText("미니어처로 보기");
