@@ -19,6 +19,7 @@ import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
+import com.google.ar.sceneform.ux.RotationController;
 import com.google.ar.sceneform.ux.ScaleController;
 import com.google.ar.sceneform.ux.TransformableNode;
 
@@ -100,6 +101,7 @@ public class ARPlayActivity extends AppCompatActivity {
         }
         Log.d(DTAG, "model address");
 
+
         ModelRenderable.builder()
                 .setSource(this, modelAddress)
 //                .setSource(this, modelID.get(modelIndex))
@@ -135,6 +137,11 @@ public class ARPlayActivity extends AppCompatActivity {
                         ScaleController scl = tfModel.getScaleController();
                         scl.setMinScale((float) 0.1);
                         scl.setMaxScale((float) 0.3);
+                    }
+
+                    if(modelName.equals("house")) {
+                        RotationController rcl = tfModel.getRotationController();
+                        rcl.setRotationRateDegrees(rcl.getRotationRateDegrees() + 20f);
                     }
                 }
         );
