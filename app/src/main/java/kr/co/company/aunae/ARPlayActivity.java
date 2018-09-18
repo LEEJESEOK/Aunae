@@ -143,6 +143,11 @@ public class ARPlayActivity extends AppCompatActivity {
                         RotationController rcl = tfModel.getRotationController();
                         rcl.setRotationRateDegrees(rcl.getRotationRateDegrees() + 20f);
                     }
+
+                    if(modelName.equals("house")) {
+                        RotationController rcl = tfModel.getRotationController();
+                        rcl.setRotationRateDegrees(rcl.getRotationRateDegrees() + 20f);
+                    }
                 }
         );
     }

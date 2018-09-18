@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/home_background"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_background"
+    android:orientation="vertical">
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
         <ImageView
-                android:id="@+id/home_back"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_centerVertical="true"
-                android:onClick="homeClick"
-                android:paddingStart="10dp"
-                android:src="@drawable/left_arrow_white"/>
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:src="@drawable/left_arrow_white"
+            android:scaleType="centerInside"/>
+
+        <View
+            android:id="@+id/home_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="homeClick"/>
 
         <TextView
                 android:id="@+id/home_titleText"
@@ -31,9 +36,9 @@
     </RelativeLayout>
 
     <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
 
     <TextView
             android:layout_width="match_parent"
@@ -44,13 +49,13 @@
             android:textColor="#ffffff"/>
 
     <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:background="#ffffff"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:background="#ffffff"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -60,38 +65,38 @@
             android:orientation="vertical">
 
         <ListView
-                android:id="@+id/placeListView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
+            android:id="@+id/placeListView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
     <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:background="#ffffff"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:background="#ffffff"/>
 
     <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"/>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
 
         <ImageView
-                android:id="@+id/mapImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="homeClick"
-                android:src="@drawable/home_location"/>
+            android:id="@+id/mapImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="homeClick"
+            android:src="@drawable/home_location" />
 
         <TextView
                 android:layout_width="wrap_content"

@@ -36,7 +36,7 @@
       collision: {},
       file: "sampledata/Wood_Box_v01/wood_box_v01.obj",
       name: "wood_box_v01",
-      scale: 0.0039179,
+      scale: 0.012,
    },
    samplers: [
       {

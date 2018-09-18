@@ -296,7 +296,7 @@
       collision: {},
       file: "sampledata/house/yu_01.obj",
       name: "yu_01",
-      scale: 0.000504,
+      scale: 0.000604,
    },
    samplers: [
       {
