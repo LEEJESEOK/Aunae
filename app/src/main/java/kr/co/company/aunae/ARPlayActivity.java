@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
@@ -24,31 +22,58 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.ScaleController;
 import com.google.ar.sceneform.ux.TransformableNode;
 
-public class ARPlayActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    final String DTAG = "arplay";
+public class ARPlayActivity extends AppCompatActivity {
 
     private static final String TAG = ARPlayActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.1;
+    private final String DTAG = "arplay";
+    private String modelName; // intent data
 
+    private int modelAddress;
+    private boolean isBuilding = false;
+    private int scaleSizeNum = 0;   // 0일때 큰 건물, 1일 때 작은 건물
+    private TextView scaleControllerTextView;
+    // arModel clear
+    private TransformableNode tfModel;
+    private AnchorNode anchorNode;
+    private Anchor anchor = null;
+    ////////////////////////////////////////////
+    private int modelIndex; // intent data
+    private ArrayList<Integer> modelID = new ArrayList<>(Arrays.asList(R.raw.wood_box_v01, R.raw.wood_plane_v01, R.raw.mabong_01, R.raw.yu_01, R.raw.ep_stone_v01));
     private ArFragment arFragment;
     private ModelRenderable modelRenderable;
-    String modelName;
-    int modelAddress;
-    boolean isBuilding = false;
-    int scaleSizeNum = 0;   // 0일때 큰 건물, 1일 때 작은 건물
-    TextView scaleControllerTextView;
 
-    // arModel clear
-    TransformableNode tfModel;
-    AnchorNode anchorNode;
-    Anchor anchor = null;
+
+    ////////////////////////////////////////////
+
+    private static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+//            Log.e(TAG, "Sceneform requires Android N or later");
+//            Toast.makeText(activity, "Sceneform requires Android N or later", Toast.LENGTH_SHORT).show();
+//            activity.finish();
+//            return false;
+//        }
+        String openGlVersrionString =
+                ((ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE))
+                        .getDeviceConfigurationInfo()
+                        .getGlEsVersion();
+        if (Double.parseDouble(openGlVersrionString) < MIN_OPENGL_VERSION) {
+            Log.e(TAG, "Sceneform requires OpenGL ES 3.1 later");
+            Toast.makeText(activity, "Sceneform requires OpenGL ES 3.1 later", Toast.LENGTH_SHORT).show();
+            activity.finish();
+            return false;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        if(!checkIsSupportedDeviceOrFinish(this)) {
+
+        if (!checkIsSupportedDeviceOrFinish(this)) {
             return;
         }
 
@@ -56,34 +81,61 @@ public class ARPlayActivity extends AppCompatActivity {
         actionBar.hide();
 
         setContentView(R.layout.activity_arplay);
-        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
-        scaleControllerTextView = (TextView)findViewById(R.id.scaleControllerTextView);
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+        scaleControllerTextView = findViewById(R.id.scaleControllerTextView);
 
-        Intent homeIntent= getIntent();
+        Intent homeIntent = getIntent();
         modelName = homeIntent.getStringExtra("MODEL");
 
-        if(modelName.equals("box")) {
-            modelAddress = R.raw.wood_box_v01;
-        } else if(modelName.equals("plane")) {
-            modelAddress = R.raw.wood_plane_v01;
-        } else if(modelName.equals("mabong")) {
-            modelAddress = R.raw.mabong_01;
-            scaleControllerTextView.setText("미니어처로 보기");
-            isBuilding = true;
-        } else if(modelName.equals("house")) {
-            modelAddress = R.raw.yu_01;
-            scaleControllerTextView.setText("미니어처로 보기");
-            isBuilding = true;
-        } else if(modelName.equals("stone")) {
-            modelAddress = R.raw.ep_stone_v01;
-        } else {
-            Toast.makeText(this, "다시 입력해주세요", Toast.LENGTH_SHORT).show();
-            finish();
+        switch (modelName) {
+            case "box":
+                modelAddress = R.raw.wood_box_v01;
+                break;
+            case "plane":
+                modelAddress = R.raw.wood_plane_v01;
+                break;
+            case "mabong":
+                modelAddress = R.raw.mabong_01;
+                scaleControllerTextView.setText("미니어처로 보기");
+                isBuilding = true;
+                break;
+            case "house":
+                modelAddress = R.raw.yu_01;
+                scaleControllerTextView.setText("미니어처로 보기");
+                isBuilding = true;
+                break;
+            case "stone":
+                modelAddress = R.raw.ep_stone_v01;
+                break;
+            default:
+                Toast.makeText(this, "다시 입력해주세요", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
         }
         Log.d(DTAG, "model address");
 
+
+        if (false) {
+
+            modelIndex = homeIntent.getIntExtra("MODEL", -1);
+            // intent error
+            if (modelIndex == -1) {
+                Log.d("ERROR", "ERROR : modelIndex = -1");
+                finish();
+            }
+
+            modelAddress = modelID.get(modelIndex);
+
+            if (modelIndex == 2 || modelIndex == 3) {
+                scaleControllerTextView.setText("미니어처로 보기");
+                isBuilding = true;
+            }
+
+        }
+
         ModelRenderable.builder()
                 .setSource(this, modelAddress)
+//                .setSource(this, modelID.get(modelIndex))
                 .build()
                 .thenAccept(renderable -> modelRenderable = renderable)
                 .exceptionally(
@@ -98,7 +150,7 @@ public class ARPlayActivity extends AppCompatActivity {
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if(modelRenderable == null || anchor != null) {
+                    if (modelRenderable == null || anchor != null) {
                         return;
                     }
 
@@ -112,39 +164,20 @@ public class ARPlayActivity extends AppCompatActivity {
                     tfModel.setParent(anchorNode);
                     tfModel.setRenderable(modelRenderable);
                     tfModel.select();
-                    if(scaleSizeNum == 1) {
+                    if (scaleSizeNum == 1) {
                         ScaleController scl = tfModel.getScaleController();
-                        scl.setMinScale((float)0.1);
-                        scl.setMaxScale((float)0.3);
+                        scl.setMinScale((float) 0.1);
+                        scl.setMaxScale((float) 0.3);
                     }
                 }
         );
     }
 
-    public static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            Log.e(TAG, "Sceneform requires Android N or later");
-            Toast.makeText(activity, "Sceneform requires Android N or later", Toast.LENGTH_SHORT).show();
-            activity.finish();
-            return false;
-        }
-        String openGlVersrionString =
-                ((ActivityManager)activity.getSystemService(Context.ACTIVITY_SERVICE))
-                        .getDeviceConfigurationInfo()
-                        .getGlEsVersion();
-        if(Double.parseDouble(openGlVersrionString) < MIN_OPENGL_VERSION) {
-            Log.e(TAG, "Sceneform requires OpenGL ES 3.1 later");
-            Toast.makeText(activity, "Sceneform requires OpenGL ES 3.1 later", Toast.LENGTH_SHORT).show();
-            activity.finish();
-            return false;
-        }
-        return true;
-    }
-
+    // onClick function
     public void playClick(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.clearImageView:
-                if(anchor == null) {
+                if (anchor == null) {
                     return;
                 } else {
                     tfModel.onDeactivate();
@@ -156,10 +189,10 @@ public class ARPlayActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.scaleControllerTextView:
-                if(isBuilding == true && scaleSizeNum == 0) {
+                if (isBuilding && scaleSizeNum == 0) {
                     scaleSizeNum = 1;
                     scaleControllerTextView.setText("큰 건물로 보기");
-                    if(anchor == null) {
+                    if (anchor == null) {
                         break;
                     } else {
                         tfModel.onDeactivate();
@@ -169,10 +202,10 @@ public class ARPlayActivity extends AppCompatActivity {
                         anchor.detach();
                         anchor = null;
                     }
-                } else if(isBuilding == true && scaleSizeNum == 1) {
+                } else if (isBuilding && scaleSizeNum == 1) {
                     scaleSizeNum = 0;
                     scaleControllerTextView.setText("미니어쳐로 보기");
-                    if(anchor == null) {
+                    if (anchor == null) {
                         break;
                     } else {
                         tfModel.onDeactivate();
