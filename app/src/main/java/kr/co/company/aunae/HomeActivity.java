@@ -7,15 +7,20 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -100,6 +105,7 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
 //                placeImageURLList.add(R.drawable.image_load_error);
+            }
         });
 
         imageRequest.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -144,4 +150,22 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    /*****************************************
+     * 액션바 삭제
+     * **************************************
+     @Override public boolean onCreateOptionsMenu(Menu menu) {
+     getMenuInflater().inflate(R.menu.actions, menu);
+
+     return true;
+     }
+
+     @Override public boolean onOptionsItemSelected(MenuItem item) {
+     switch(item.getItemId()) {
+     case R.id.action_back:
+     finish();
+     return true;
+     default:
+     return true;
+     }
+     }*/
 }
