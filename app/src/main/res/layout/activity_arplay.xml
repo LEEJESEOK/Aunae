@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ARPlayActivity">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".ARPlayActivity">
 
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.ar.sceneform.ux.ArFragment"
-        android:id="@+id/ux_fragment" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.ar.sceneform.ux.ArFragment"
+            android:id="@+id/ux_fragment"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="top|left"
-        android:id="@+id/finishARImageView"
-        android:onClick="playClick"
-        android:src="@drawable/left_arrow_white"
-        android:scaleType="centerInside"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="top|start"
+            android:id="@+id/finishARImageView"
+            android:onClick="playClick"
+            android:src="@drawable/back_white_arrow"
+            android:scaleType="centerInside"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="top|right"
-        android:id="@+id/clearImageView"
-        android:onClick="playClick"
-        android:src="@drawable/eraser"
-        android:scaleType="centerInside"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="top|end"
+            android:id="@+id/clearImageView"
+            android:onClick="playClick"
+            android:src="@drawable/eraser"
+            android:scaleType="centerInside"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="bottom|right"
-        android:textSize="20dp"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:onClick="playClick"
-        android:id="@+id/scaleControllerTextView" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom|end"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:onClick="playClick"
+            android:id="@+id/scaleControllerTextView"/>
 
 </FrameLayout>
