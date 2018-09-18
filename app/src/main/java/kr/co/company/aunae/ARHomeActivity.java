@@ -21,7 +21,7 @@ public class ARHomeActivity extends AppCompatActivity {
     private TextView nameText;
 
     private ArrayList<String> itemList = new ArrayList<>(Arrays.asList("벽관", "목판", "매봉교회", "유관순열사 생가", "독립운동 기념비"));
-    private ArrayList<Integer> itemImageIDList = new ArrayList<>(Arrays.asList(R.drawable.arhome_box, R.drawable.arhome_plane, R.drawable.arhome_house, R.drawable.arhome_church, R.drawable.arhome_stone));
+    private ArrayList<Integer> itemImageIDList = new ArrayList<>(Arrays.asList(R.drawable.arhome_box, R.drawable.arhome_plane, R.drawable.arhome_church, R.drawable.arhome_house, R.drawable.arhome_stone));
 
     private int itemLength;
     private int index = 0;
