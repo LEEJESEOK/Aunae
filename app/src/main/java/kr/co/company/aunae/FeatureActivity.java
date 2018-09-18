@@ -34,7 +34,6 @@ public class FeatureActivity extends AppCompatActivity {
     private void setFeatureData() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_FEATURE_DATA, response -> {
             try {
-                Log.d("feature", "response : " + response);
                 JSONObject message = new JSONObject(response);
 
                 if (!message.getBoolean("error")) {
