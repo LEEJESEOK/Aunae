@@ -1,7 +1,6 @@
 package kr.co.company.aunae;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.android.volley.*;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.TimeoutError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
@@ -51,7 +52,7 @@ public class FeatureActivity extends AppCompatActivity {
 
                             String path = tempObject.optString("Path");
                             // 경로가 "./"으로 시작하기 때문에 . 제거
-                            path = path.substring(1, path.length());
+                            path = path.substring(1);
                             imageURL.add(Constants.URL_IMAGE + path);
                         }
                     }

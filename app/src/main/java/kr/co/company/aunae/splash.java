@@ -1,14 +1,12 @@
 package kr.co.company.aunae;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Window;
-
 import com.felipecsl.gifimageview.library.GifImageView;
-
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -29,26 +27,21 @@ public class splash extends AppCompatActivity {
         actionBar.hide();
 
 
-        gifImageView = (GifImageView)findViewById(R.id.gifImageView);
+        gifImageView = findViewById(R.id.gifImageView);
 
-        try{
+        try {
             InputStream inputStream = getAssets().open("splash.gif");
             byte[] bytes = IOUtils.toByteArray(inputStream);
             gifImageView.setBytes(bytes);
             gifImageView.startAnimation();
-        }
-        catch (IOException ex)
-        {
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         //Wait for 3 seconds and start Activity Main
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                splash.this.startActivity(new Intent(splash.this,MainActivity.class));
-                splash.this.finish();
-            }
-        },2200); // 3000 = 3seconds
+        new Handler().postDelayed(() -> {
+            splash.this.startActivity(new Intent(splash.this, MainActivity.class));
+            splash.this.finish();
+        }, 2200); // 3000 = 3seconds
 
     }
 }

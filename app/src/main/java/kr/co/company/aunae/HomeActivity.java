@@ -25,7 +25,6 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
-
     private ListView placeListView;
     private ArrayList<String> placeImageURLList;
     private ListViewAdapter_place placeListAdapter;
@@ -50,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                             JSONObject tempObject = image.getJSONObject(0);
                             String path = tempObject.optString("Path");
                             // 경로가 "./"으로 시작하기 때문에 . 을 기준으로 trim
-                            path = path.substring(1, path.length());
+                            path = path.substring(1);
                             String imageURL = Constants.URL_IMAGE + path;
 
                             setImage(name, imageURL, ID);

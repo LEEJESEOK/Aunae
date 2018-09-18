@@ -13,8 +13,7 @@ public class ListViewAdapter_feature extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     private ArrayList<ListViewItem_feature> listViewItem_features = new ArrayList<>();
 
-    public ListViewAdapter_feature() {
-
+    ListViewAdapter_feature() {
     }
 
     // Adapter에 사용되는 데이터의 개수를 리턴
@@ -38,17 +37,16 @@ public class ListViewAdapter_feature extends BaseAdapter {
     // position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
         final Context context = parent.getContext();
 
         // "listview_item_ihome" layout을 inflate하여 converView 참조 획득
-        if(convertView == null) {
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_feature, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        TextView textview = (TextView)convertView.findViewById(R.id.list_textview);
+        TextView textview = convertView.findViewById(R.id.list_textview);
 
         // Data Set(ListViewItem_ihomes)에서 position에 위치한 데이터 참조 획득
         ListViewItem_feature listViewItem = listViewItem_features.get(position);
@@ -60,7 +58,7 @@ public class ListViewAdapter_feature extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수
-    public void addItem(String ti) {
+    void addItem(String ti) {
         ListViewItem_feature item = new ListViewItem_feature();
 
         item.setTitle(ti);

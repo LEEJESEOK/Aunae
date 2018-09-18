@@ -1,32 +1,18 @@
 package kr.co.company.aunae;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
+import android.widget.*;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,21 +23,17 @@ import java.util.Map;
 
 public class PlaceActivity extends AppCompatActivity {
 
-    int place_id;
-
-    // place data iamge url
-    ArrayList<String> imageURL = new ArrayList<>();
-
     ImageView imageView;
-    TextView titleText, nameText, placeTextView;
-
     ListView featureListView;
-    ArrayList<String> featureListArray;
     ArrayAdapter featureListAdapter;
-
     ListViewItem_place featureCustomListView;
     ArrayList<ListViewItem_place> freatureCustomListArray;
-    ListViewAdapter_feature featrueCustomListAdapter;
+    private int place_id;
+    // place data iamge url
+    private ArrayList<String> imageURL = new ArrayList<>();
+    private TextView titleText, nameText, placeTextView;
+    private ArrayList<String> featureListArray;
+    private ListViewAdapter_feature featrueCustomListAdapter;
 
     private static void listViewHeightSet(BaseAdapter listAdapter, ListView listView) {
         int totalHeight = 0;
@@ -67,54 +49,48 @@ public class PlaceActivity extends AppCompatActivity {
     }
 
     private void setPlaceData() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_PLACE_DATA, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject message = new JSONObject(response);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_PLACE_DATA, response -> {
+            try {
+                JSONObject message = new JSONObject(response);
 
-                    if (!message.getBoolean("error")) {
-                        JSONArray posts = message.getJSONArray("posts");
+                if (!message.getBoolean("error")) {
+                    JSONArray posts = message.getJSONArray("posts");
 
-                        JSONObject object = posts.getJSONObject(0);
+                    JSONObject object = posts.getJSONObject(0);
 
-                        String name = object.isNull("name") ? "" : object.optString("name");
-                        String text = object.isNull("text") ? "" : object.optString("text");
-                        String audio = object.isNull("audio") ? "" : object.optString("audio");
-                        JSONArray image = object.isNull("image") ? new JSONArray() : new JSONArray(object.optString("image"));
+                    String name = object.isNull("name") ? "" : object.optString("name");
+                    String text = object.isNull("text") ? "" : object.optString("text");
+                    String audio = object.isNull("audio") ? "" : object.optString("audio");
+                    JSONArray image = object.isNull("image") ? new JSONArray() : new JSONArray(object.optString("image"));
 
-                        if (image.length() > 0) {
-                            for (int j = 0; j < image.length(); j++) {
-                                JSONObject tempObject = image.getJSONObject(j);
+                    if (image.length() > 0) {
+                        for (int j = 0; j < image.length(); j++) {
+                            JSONObject tempObject = image.getJSONObject(j);
 
-                                String path = tempObject.optString("Path");
-                                // 경로가 "./"으로 시작하기 때문에 . 제거
-                                path = path.substring(1, path.length());
-                                imageURL.add(Constants.URL_IMAGE + path);
-                            }
+                            String path = tempObject.optString("Path");
+                            // 경로가 "./"으로 시작하기 때문에 . 제거
+                            path = path.substring(1);
+                            imageURL.add(Constants.URL_IMAGE + path);
                         }
-                        setPlaceDataView(name, text);
-                        setImage();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    setPlaceDataView(name, text);
+                    setImage();
                 }
-
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }, error -> {
+            if (error.networkResponse == null) {
+                if (error.getClass().equals(TimeoutError.class)) {
+                    Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
                 params.put("place_id", String.valueOf(place_id));
@@ -134,24 +110,18 @@ public class PlaceActivity extends AppCompatActivity {
     }
 
     private void setImage() {
-        ImageRequest imageRequest = new ImageRequest(imageURL.get(0), new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                Log.d("TEST", "imageURL : " + imageURL.get(0));
-                imageView.setImageBitmap(response);
-            } // TODO 이미지 스케일 적용방식 수정해주어야함
-        }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        ImageRequest imageRequest = new ImageRequest(imageURL.get(0), response -> {
+            Log.d("TEST", "imageURL : " + imageURL.get(0));
+            imageView.setImageBitmap(response);
+        }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, error -> {
+            if (error.networkResponse == null) {
+                if (error.getClass().equals(TimeoutError.class)) {
+                    Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
-                imageView.setImageResource(R.drawable.image_load_error);
+            } else {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
+            imageView.setImageResource(R.drawable.image_load_error);
         });
 
         imageRequest.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -160,29 +130,26 @@ public class PlaceActivity extends AppCompatActivity {
 
     private void setFeatureList() {
         setFeatureView();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_FEATURE_LIST, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject message = new JSONObject(response);
-                    if (!message.getBoolean("error")) {
-                        JSONArray posts = message.getJSONArray("posts");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_FEATURE_LIST, response -> {
+            try {
+                JSONObject message = new JSONObject(response);
+                if (!message.getBoolean("error")) {
+                    JSONArray posts = message.getJSONArray("posts");
 
-                        if (posts.length() > 0) {
-                            for (int countItem = 0; countItem < posts.length(); countItem++) {
-                                JSONObject object = posts.getJSONObject(countItem);
+                    if (posts.length() > 0) {
+                        for (int countItem = 0; countItem < posts.length(); countItem++) {
+                            JSONObject object = posts.getJSONObject(countItem);
 
-                                String name = object.isNull("feature_name") ? "" : object.optString("feature_name");
-                                Log.d("NAME", name);
-                               // featureListArray.add(name);
-                                featrueCustomListAdapter.addItem(name);
-                            }
+                            String name = object.isNull("feature_name") ? "" : object.optString("feature_name");
+                            Log.d("NAME", name);
+                            // featureListArray.add(name);
+                            featrueCustomListAdapter.addItem(name);
                         }
-                        //setFeatureView();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    //setFeatureView();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }, error -> {
             if (error.networkResponse == null) {
@@ -244,16 +211,13 @@ public class PlaceActivity extends AppCompatActivity {
         setPlaceData();
         setFeatureList();
 
-        featureListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent ToFeatureIntent = new Intent(PlaceActivity.this, FeatureActivity.class);
+        featureListView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent ToFeatureIntent = new Intent(PlaceActivity.this, FeatureActivity.class);
 
-                ToFeatureIntent.putExtra("place_id", place_id);
-                ToFeatureIntent.putExtra("feature_id", position + 1);
+            ToFeatureIntent.putExtra("place_id", place_id);
+            ToFeatureIntent.putExtra("feature_id", position + 1);
 
-                startActivity(ToFeatureIntent);
-            }
+            startActivity(ToFeatureIntent);
         });
 
     }
@@ -291,7 +255,7 @@ public class PlaceActivity extends AppCompatActivity {
         super.onResume();
 
         ScrollView scv = findViewById(R.id.placeScrollView);
-        LinearLayout linearLayout = (LinearLayout)scv.getParent();
+        LinearLayout linearLayout = (LinearLayout) scv.getParent();
         int x = linearLayout.getLeft();
         int y = linearLayout.getTop();
         scv.smoothScrollTo(x, y);

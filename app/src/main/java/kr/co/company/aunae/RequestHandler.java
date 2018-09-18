@@ -1,22 +1,21 @@
 package kr.co.company.aunae;
 
 import android.content.Context;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public class RequestHandler {
+class RequestHandler {
     private static RequestHandler instance;
-    private static Context context;
+    private static Context mContext;
     private RequestQueue requestQueue;
 
     private RequestHandler(Context context) {
-        this.context = context;
+        mContext = context;
         requestQueue = getRequestQueue();
     }
 
-    public static synchronized RequestHandler getInstance(Context context) {
+    static synchronized RequestHandler getInstance(Context context) {
         if (instance == null) {
             instance = new RequestHandler(context);
         }
@@ -24,15 +23,15 @@ public class RequestHandler {
         return instance;
     }
 
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+            requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
         }
 
         return requestQueue;
     }
 
-    public <T> void addToRequestQueue(Request<T> request) {
+    <T> void addToRequestQueue(Request<T> request) {
         getRequestQueue().add(request);
     }
 }

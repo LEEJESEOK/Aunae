@@ -74,7 +74,7 @@ public class ARHomeActivity extends AppCompatActivity {
     }
 
     public void arClick(View view) {
-       if (view.getId() == R.id.arhome_back) {
+        if (view.getId() == R.id.arhome_back) {
             finish();
         }
     }

@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -81,7 +80,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void mapClick(View view) {
-        if(view.getId() == R.id.mapBack) {
+        if (view.getId() == R.id.mapBack) {
             finish();
         }
     }
