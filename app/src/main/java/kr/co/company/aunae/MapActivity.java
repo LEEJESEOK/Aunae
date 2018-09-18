@@ -5,7 +5,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +25,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,
@@ -73,5 +78,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // Polygon polygon = mMap.addPolygon(new PolygonOptions().add(museum, home, park).strokeColor(Color.RED).fillColor(Color.argb(128, 0, 0, 255)));
         // Circle circle = mMap.addCircle((new CircleOptions().center(museum).radius(1000)).strokeColor(Color.RED).fillColor(Color.argb(64, 0, 0, 255)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(museum, 14f));
+    }
+
+    public void mapClick(View view) {
+        if(view.getId() == R.id.mapBack) {
+            finish();
+        }
     }
 }

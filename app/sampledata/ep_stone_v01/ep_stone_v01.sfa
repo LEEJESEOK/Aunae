@@ -88,7 +88,7 @@
       collision: {},
       file: "sampledata/ep_stone_v01/ep_stone_v01.obj",
       name: "ep_stone_v01",
-      scale: 0.00124,
+      scale: 0.0020,
    },
    samplers: [
       {

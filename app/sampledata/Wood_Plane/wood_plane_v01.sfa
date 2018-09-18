@@ -36,7 +36,7 @@
       collision: {},
       file: "sampledata/Wood_Plane/wood_plane_v01.obj",
       name: "wood_plane_v01",
-      scale: 0.25,
+      scale: 0.05,
    },
    samplers: [
       {

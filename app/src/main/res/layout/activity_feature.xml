@@ -14,14 +14,18 @@
         android:paddingTop="5dp">
 
         <ImageView
-            android:id="@+id/featureBackButton"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:onClick="featureClick"
             android:paddingLeft="10dp"
             android:src="@drawable/left_arrow_black" />
+
+        <View
+            android:id="@+id/featureBackButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="featureClick"/>
 
         <TextView
             android:id="@+id/titleTextView"
