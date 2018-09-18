@@ -12,16 +12,12 @@
             tools:context="kr.co.company.aunae.MapActivity"/>
 
     <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:id="@+id/mapBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="mapClick"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/back_black_arrow"/>
-
-    <View
-            android:id="@+id/mapBack"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:onClick="mapClick"/>
 
 </FrameLayout>
