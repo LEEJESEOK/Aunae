@@ -10,16 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
+import com.android.volley.*;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,64 +23,56 @@ import java.util.Map;
 
 public class FeatureActivity extends AppCompatActivity {
 
-    int place_id, feature_id;
+    private int place_id, feature_id;
 
-    ArrayList<String> imageURL = new ArrayList<>();
+    private ArrayList<String> imageURL = new ArrayList<>();
 
-    ImageView imageView;
-    TextView titleText, nameText, featureTextView;
+    private ImageView imageView;
+    private TextView titleText, nameText, featureTextView;
 
 
     private void setFeatureData() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_FEATURE_DATA, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject message = new JSONObject(response);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_FEATURE_DATA, response -> {
+            try {
+                Log.d("feature", "response : " + response);
+                JSONObject message = new JSONObject(response);
 
-                    if (!message.getBoolean("error")) {
-                        JSONArray posts = message.getJSONArray("posts");
+                if (!message.getBoolean("error")) {
+                    JSONArray posts = message.getJSONArray("posts");
 
-                        JSONObject object = posts.getJSONObject(0);
+                    JSONObject object = posts.getJSONObject(0);
 
-                        String name = object.isNull("name") ? "" : object.optString("name");
-                        String text = object.isNull("text") ? "" : object.optString("text");
-                        String audio = object.isNull("audio") ? "" : object.optString("audio");
-                        JSONArray image = object.isNull("image") ? new JSONArray() : new JSONArray(object.optString("image"));
+                    String name = object.isNull("name") ? "" : object.optString("name");
+                    String text = object.isNull("text") ? "" : object.optString("text");
+                    JSONArray image = object.isNull("image") ? new JSONArray() : new JSONArray(object.optString("image"));
 
-                        if (image.length() > 0) {
-                            for (int j = 0; j < image.length(); j++) {
-                                JSONObject tempObject = image.getJSONObject(j);
+                    if (image.length() > 0) {
+                        for (int j = 0; j < image.length(); j++) {
+                            JSONObject tempObject = image.getJSONObject(j);
 
-                                String path = tempObject.optString("Path");
-                                // 경로가 "./"으로 시작하기 때문에 . 제거
-                                path = path.substring(1, path.length());
-                                imageURL.add(Constants.URL_IMAGE + path);
-                            }
+                            String path = tempObject.optString("Path");
+                            // 경로가 "./"으로 시작하기 때문에 . 제거
+                            path = path.substring(1, path.length());
+                            imageURL.add(Constants.URL_IMAGE + path);
                         }
-                        setPlaceDataView(name, text);
-                        setImage();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    setPlaceDataView(name, text);
+                    setImage();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        }, error -> {
+            if (error.networkResponse == null) {
+                if (error.getClass().equals(TimeoutError.class)) {
+                    Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
                 params.put("place_id", String.valueOf(place_id));
@@ -108,24 +93,18 @@ public class FeatureActivity extends AppCompatActivity {
     }
 
     private void setImage() {
-        ImageRequest imageRequest = new ImageRequest(imageURL.get(0), new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                Log.d("TEST", "imageURL" + imageURL.get(0));
-                imageView.setImageBitmap(response);
-            }
-        }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        ImageRequest imageRequest = new ImageRequest(imageURL.get(0), response -> {
+            Log.d("TEST", "imageURL" + imageURL.get(0));
+            imageView.setImageBitmap(response);
+        }, 0, 0, ImageView.ScaleType.FIT_CENTER, null, error -> {
+            if (error.networkResponse == null) {
+                if (error.getClass().equals(TimeoutError.class)) {
+                    Toast.makeText(getApplicationContext(), "서버와 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
-                imageView.setImageResource(R.drawable.image_load_error);
+            } else {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
+            imageView.setImageResource(R.drawable.image_load_error);
         });
 
         imageRequest.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
