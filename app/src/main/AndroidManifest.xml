@@ -22,50 +22,49 @@
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key"/>
-
         <meta-data
                 android:name="com.google.ar.core"
                 android:value="required"/>
 
         <activity
-                android:name="kr.co.company.aunae.MainActivity"
+                android:name=".MainActivity"
                 android:launchMode="singleTop"/>
         <activity
-                android:name="kr.co.company.aunae.HomeActivity"
+                android:name=".HomeActivity"
                 android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="kr.co.company.aunae.MainActivity"/>
         </activity>
         <activity
-                android:name="kr.co.company.aunae.PlaceActivity"
+                android:name=".PlaceActivity"
                 android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="kr.co.company.aunae.HomeActivity"/>
         </activity>
         <activity
-                android:name="kr.co.company.aunae.FeatureActivity"
+                android:name=".FeatureActivity"
                 android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="kr.co.company.aunae.PlaceActivity"/>
         </activity>
         <activity
-                android:name="kr.co.company.aunae.ARHomeActivity"
+                android:name=".ARHomeActivity"
                 android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="kr.co.company.aunae.MainActivity"/>
         </activity>
         <activity
-                android:name="kr.co.company.aunae.ARPlayActivity"
+                android:name=".ARPlayActivity"
                 android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="kr.co.company.aunae.ARHomeActivity"/>
         </activity>
-        <activity android:name="kr.co.company.aunae.splash">
+        <activity android:name=".splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>
@@ -74,7 +73,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="kr.co.company.aunae.MapActivity"
+                android:name=".MapActivity"
                 android:launchMode="singleTop">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"

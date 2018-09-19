@@ -28,7 +28,6 @@ public class ARPlayActivity extends AppCompatActivity {
     private static final String TAG = ARPlayActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.1;
     private final String DTAG = "arplay";
-    private String modelName; // intent data
 
     private int modelAddress;
     private boolean isBuilding = false;
@@ -43,7 +42,6 @@ public class ARPlayActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
     private ModelRenderable modelRenderable;
-
 
     ////////////////////////////////////////////
 
@@ -70,6 +68,7 @@ public class ARPlayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_arplay);
 
         if (!checkIsSupportedDeviceOrFinish(this)) {
             return;
@@ -78,7 +77,6 @@ public class ARPlayActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        setContentView(R.layout.activity_arplay);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
         scaleControllerTextView = findViewById(R.id.scaleControllerTextView);
 
@@ -91,17 +89,17 @@ public class ARPlayActivity extends AppCompatActivity {
         }
 
         modelAddress = Constants.modelID.get(modelIndex);
+        Log.d(DTAG, "modelAddress : " + modelAddress);
+        Log.d(DTAG, "modelIndex : " + modelIndex);
 
         if (modelIndex == 2 || modelIndex == 3) {
             scaleControllerTextView.setText("미니어처로 보기");
             isBuilding = true;
         }
-        Log.d(DTAG, "model address");
 
 
         ModelRenderable.builder()
                 .setSource(this, modelAddress)
-//                .setSource(this, modelID.get(modelIndex))
                 .build()
                 .thenAccept(renderable -> modelRenderable = renderable)
                 .exceptionally(
@@ -136,12 +134,7 @@ public class ARPlayActivity extends AppCompatActivity {
                         scl.setMaxScale((float) 0.3);
                     }
 
-                    if (modelName.equals("house")) {
-                        RotationController rcl = tfModel.getRotationController();
-                        rcl.setRotationRateDegrees(rcl.getRotationRateDegrees() + 20f);
-                    }
-
-                    if (modelName.equals("house")) {
+                    if (modelIndex == 3) {
                         RotationController rcl = tfModel.getRotationController();
                         rcl.setRotationRateDegrees(rcl.getRotationRateDegrees() + 20f);
                     }
