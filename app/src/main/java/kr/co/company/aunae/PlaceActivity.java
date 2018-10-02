@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlaceActivity extends AppCompatActivity {
 
@@ -175,13 +176,6 @@ public class PlaceActivity extends AppCompatActivity {
     }
 
     private void setFeatureView() {
-        /*
-        featureListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, featureListArray);
-
-        listViewHeightSet(featureListAdapter, featureListView);
-
-        featureListView.setAdapter(featureListAdapter);
-        */
         featrueCustomListAdapter = new ListViewAdapter_feature();
         featureListView.setAdapter(featrueCustomListAdapter);
     }
@@ -192,7 +186,7 @@ public class PlaceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_place);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        Objects.requireNonNull(actionBar).hide();
 
         Intent intent = getIntent();
         place_id = intent.getIntExtra("place_id", 0);

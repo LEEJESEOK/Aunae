@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FeatureActivity extends AppCompatActivity {
 
@@ -117,7 +118,7 @@ public class FeatureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feature);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        Objects.requireNonNull(actionBar).hide();
 
         Intent intent = getIntent();
 

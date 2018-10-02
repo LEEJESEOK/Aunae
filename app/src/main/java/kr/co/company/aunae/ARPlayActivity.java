@@ -23,6 +23,8 @@ import com.google.ar.sceneform.ux.RotationController;
 import com.google.ar.sceneform.ux.ScaleController;
 import com.google.ar.sceneform.ux.TransformableNode;
 
+import java.util.Objects;
+
 public class ARPlayActivity extends AppCompatActivity {
 
     private static final String TAG = ARPlayActivity.class.getSimpleName();
@@ -53,7 +55,7 @@ public class ARPlayActivity extends AppCompatActivity {
 //            return false;
 //        }
         String openGlVersrionString =
-                ((ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE))
+                ((ActivityManager) Objects.requireNonNull(activity.getSystemService(Context.ACTIVITY_SERVICE)))
                         .getDeviceConfigurationInfo()
                         .getGlEsVersion();
         if (Double.parseDouble(openGlVersrionString) < MIN_OPENGL_VERSION) {
@@ -75,7 +77,7 @@ public class ARPlayActivity extends AppCompatActivity {
         }
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        Objects.requireNonNull(actionBar).hide();
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
         scaleControllerTextView = findViewById(R.id.scaleControllerTextView);

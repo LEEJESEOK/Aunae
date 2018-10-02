@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -60,9 +61,6 @@ public class HomeActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            //TODO List
-            // ListView 갱신
         }, error -> {
             if (error.networkResponse == null) {
                 if (error.getClass().equals(TimeoutError.class)) {
@@ -83,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setImage(String name, String URL, int ID) {
-        // TODO 이미지 스케일 적용방식 수정해주어야함
         ImageRequest imageRequest = new ImageRequest(URL, response -> {
             Bitmap resized = Bitmap.createScaledBitmap(response, 200, 200, true);
 
@@ -111,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        Objects.requireNonNull(actionBar).hide();
 
         placeListView = findViewById(R.id.placeListView);
         placeImageURLList = new ArrayList<>();
@@ -142,23 +139,4 @@ public class HomeActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    /*****************************************
-     * 액션바 삭제
-     * **************************************
-     @Override public boolean onCreateOptionsMenu(Menu menu) {
-     getMenuInflater().inflate(R.menu.actions, menu);
-
-     return true;
-     }
-
-     @Override public boolean onOptionsItemSelected(MenuItem item) {
-     switch(item.getItemId()) {
-     case R.id.action_back:
-     finish();
-     return true;
-     default:
-     return true;
-     }
-     }*/
 }

@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class ARHomeActivity extends AppCompatActivity {
 
     private ConstraintLayout background;
@@ -27,7 +29,7 @@ public class ARHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_arhome);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        Objects.requireNonNull(actionBar).hide();
 
         background = findViewById(R.id.background);
         itemImage = findViewById(R.id.itemImage);
